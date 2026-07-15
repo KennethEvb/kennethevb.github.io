@@ -38,17 +38,30 @@
   }
   .eyebrow::before{content:""; width:22px; height:1px; background:var(--teal-deep);}
 
-  nav{
-    position:sticky; top:0; z-index:20; background:rgba(245,244,239,0.92); backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--line); padding:16px 0;
+  .liquid-glass{
+    background-color: rgba(255,255,255,0.65);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.5);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.8), 0 10px 30px -10px rgba(20,23,31,0.08);
   }
-  nav .wrap{display:flex; justify-content:space-between; align-items:center;}
-  .back-link{font-size:13px; color:var(--soft); text-decoration:none; font-weight:500;}
-  .nav-links{display:flex; gap:26px; font-size:13px; font-weight:500;}
-  .nav-links a{text-decoration:none; color:var(--ink-2);}
+  .nav-wrap{position:fixed; top:16px; left:0; right:0; z-index:50; padding:0 20px; pointer-events:none;}
+  nav{
+    max-width:1040px; margin:0 auto; border-radius:999px; padding:12px 28px;
+    display:flex; justify-content:space-between; align-items:center;
+    box-shadow:0 10px 30px -8px rgba(20,23,31,0.15); pointer-events:auto;
+    transition:all .3s ease;
+  }
+  .back-link{font-size:13px; color:var(--soft); text-decoration:none; font-weight:500; padding:6px 13px; border-radius:999px; transition:all .2s ease;}
+  .back-link:hover{background:rgba(20,23,31,0.05); color:var(--teal-deep);}
+  .nav-links{display:flex; align-items:center; gap:4px; font-size:12px; font-weight:600;}
+  .nav-links a{text-decoration:none; color:var(--ink-2); padding:6px 12px; border-radius:999px; transition:all .2s ease;}
+  .nav-links a:hover{background:rgba(20,23,31,0.05); color:var(--teal-deep);}
   .btn{font-size:13px; font-weight:600; padding:9px 18px; border-radius:3px; text-decoration:none; background:var(--ink); color:var(--paper); font-family:'Inter',sans-serif;}
+  .nav-btn{font-size:11px; font-weight:600; padding:8px 18px; border-radius:999px; text-decoration:none; background:var(--ink); color:var(--paper); font-family:'Inter',sans-serif; box-shadow:0 2px 8px rgba(20,23,31,0.15); transition:all .2s ease;}
+  .nav-btn:hover{background:var(--ink-2); transform:scale(1.05);}
+  .ambient-orb{position:absolute; border-radius:50%; filter:blur(70px); pointer-events:none; z-index:0;}
 
-  .hero{padding:80px 0 70px;}
+  .hero{padding:150px 0 70px; position:relative; overflow:hidden;}
   .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;}
   .hero h1{font-size:46px; font-weight:600; line-height:1.12; letter-spacing:-0.5px;}
   .hero .lede{font-size:16px; color:var(--soft); margin-top:20px; max-width:460px;}
@@ -249,8 +262,8 @@
 </head>
 <body>
 
-<nav>
-  <div class="wrap">
+<div class="nav-wrap">
+  <nav class="liquid-glass">
     <a class="back-link" href="index.html">← Back to portfolio</a>
     <div class="nav-links">
       <a href="#approach">Approach</a>
@@ -259,12 +272,14 @@
       <a href="#stack">Stack</a>
       <a href="#reflection">Reflection</a>
     </div>
-    <a class="btn" href="#" target="_blank">View on GitHub</a>
-  </div>
-</nav>
+    <a class="nav-btn" href="#" target="_blank">View on GitHub</a>
+  </nav>
+</div>
 
 <header class="hero">
-  <div class="wrap hero-grid">
+  <div class="ambient-orb" style="top:-15%; left:-10%; width:480px; height:480px; background:linear-gradient(135deg, rgba(31,111,107,0.14), rgba(240,185,77,0.07));"></div>
+  <div class="ambient-orb" style="top:30%; right:-15%; width:560px; height:560px; background:linear-gradient(225deg, rgba(31,111,107,0.06), rgba(240,185,77,0.13));"></div>
+  <div class="wrap hero-grid" style="position:relative; z-index:1;">
     <div>
       <div class="eyebrow">Personal Project</div>
       <h1>Reading 400 pages of regulation shouldn't require a legal team.</h1>

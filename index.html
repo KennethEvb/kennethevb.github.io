@@ -22,16 +22,47 @@
   .eyebrow{font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:1.4px; text-transform:uppercase; color:var(--teal-deep); font-weight:500; margin-bottom:14px; display:flex; align-items:center; gap:10px;}
   .eyebrow::before{content:""; width:22px; height:1px; background:var(--teal-deep);}
 
-  nav{position:sticky; top:0; z-index:20; background:rgba(245,244,239,0.92); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); padding:16px 0;}
-  nav .wrap{display:flex; justify-content:space-between; align-items:center;}
-  .logo{font-family:'Spectral',serif; font-size:18px; font-weight:600; text-decoration:none;}
-  .nav-links{display:flex; gap:26px; font-size:13px; font-weight:500;}
-  .nav-links a{text-decoration:none; color:var(--ink-2);}
+  .liquid-glass{
+    background-color: rgba(255,255,255,0.65);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.5);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.8), 0 10px 30px -10px rgba(20,23,31,0.08);
+  }
+  .nav-wrap{position:fixed; top:16px; left:0; right:0; z-index:50; padding:0 20px; pointer-events:none;}
+  nav{
+    max-width:1040px; margin:0 auto; border-radius:999px; padding:12px 28px;
+    display:flex; justify-content:space-between; align-items:center;
+    box-shadow:0 10px 30px -8px rgba(20,23,31,0.15); pointer-events:auto;
+    transition:all .3s ease;
+  }
+  .logo{font-family:'Spectral',serif; font-size:18px; font-weight:800; letter-spacing:-0.3px; text-decoration:none; color:var(--ink); transition:transform .2s ease;}
+  .logo:hover{transform:scale(1.05);}
+  .nav-links{display:flex; align-items:center; gap:6px; font-size:12px; font-weight:600; color:var(--ink-2);}
+  .nav-links a{text-decoration:none; color:inherit; padding:6px 13px; border-radius:999px; transition:all .2s ease;}
+  .nav-links a:hover{background:rgba(20,23,31,0.05); color:var(--teal);}
+  .back-link{font-size:13px; color:var(--soft); text-decoration:none; font-weight:500; padding:6px 13px; border-radius:999px; transition:all .2s ease;}
+  .back-link:hover{background:rgba(20,23,31,0.05); color:var(--teal);}
   .btn{font-size:13px; font-weight:600; padding:9px 18px; border-radius:3px; text-decoration:none; background:var(--ink); color:var(--paper);}
+  .btn:hover{background:var(--ink-2);}
+  .nav-btn{font-size:11px; font-weight:600; padding:8px 18px; border-radius:999px; text-decoration:none; background:var(--ink); color:var(--paper); font-family:'Inter',sans-serif; box-shadow:0 2px 8px rgba(20,23,31,0.15); transition:all .2s ease;}
+  .nav-btn:hover{background:var(--ink-2); transform:scale(1.05);}
+  .ambient-orb{position:absolute; border-radius:50%; filter:blur(70px); pointer-events:none; z-index:0;}
   .btn-ghost{font-size:13px; font-weight:600; padding:9px 18px; border-radius:3px; text-decoration:none; border:1px solid var(--ink); color:var(--ink);}
 
-  .hero{padding:90px 0 60px;}
+  .hero{padding:150px 0 60px; position:relative; overflow:hidden;}
   .hero .eyebrow{margin-bottom:18px;}
+  .eyebrow-row{display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:18px;}
+  .status-pill{
+    display:inline-flex; align-items:center; gap:7px; background:rgba(31,111,107,0.08); border:1px solid rgba(31,111,107,0.22);
+    padding:5px 12px; border-radius:999px; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700;
+    color:var(--teal-deep); text-transform:uppercase; letter-spacing:0.6px;
+  }
+  .ping-dot{width:6px; height:6px; border-radius:50%; background:var(--green); position:relative; flex-shrink:0;}
+  .ping-dot::before{
+    content:""; position:absolute; inset:0; border-radius:50%; background:var(--green);
+    animation:ping 1.8s cubic-bezier(0,0,0.2,1) infinite;
+  }
+  @keyframes ping{75%,100%{transform:scale(2.4); opacity:0;}}
   .hero h1{font-size:48px; font-weight:600; line-height:1.14; letter-spacing:-0.5px; max-width:680px;}
   .hero .lede{font-size:16.5px; color:var(--soft); margin-top:22px; max-width:520px;}
   .hero-ctas{margin-top:30px; display:flex; gap:14px;}
@@ -80,22 +111,26 @@
 </head>
 <body>
 
-<nav>
-  <div class="wrap">
+<div class="nav-wrap">
+  <nav class="liquid-glass">
     <a class="logo" href="index.html">Kenneth</a>
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#work">Work</a>
       <a href="#contact">Contact</a>
+      <a class="nav-btn" href="#" target="_blank">Résumé</a>
     </div>
-    <a class="btn-ghost" href="#" target="_blank">Résumé</a>
-    
-  </div>
-</nav>
+  </nav>
+</div>
 
 <header class="hero">
-  <div class="wrap">
-    <div class="eyebrow">Business Intelligence · Data Consulting</div>
+  <div class="ambient-orb" style="top:-15%; left:-10%; width:480px; height:480px; background:linear-gradient(135deg, rgba(31,111,107,0.14), rgba(240,185,77,0.07));"></div>
+  <div class="ambient-orb" style="top:35%; right:-15%; width:560px; height:560px; background:linear-gradient(225deg, rgba(31,111,107,0.06), rgba(240,185,77,0.13));"></div>
+  <div class="wrap" style="position:relative; z-index:1;">
+    <div class="eyebrow-row">
+      <span class="status-pill"><span class="ping-dot"></span>Active &amp; Open to Roles</span>
+      <span class="eyebrow" style="margin:0;">Business Intelligence · Data Consulting</span>
+    </div>
     <h1>I turn dense, messy source material into structured data people can actually act on.</h1>
     <p class="lede">Senior Consultant working across business intelligence, data governance, and delivery — currently deepening my BI practice with Power BI, SQL, and Databricks, and completing the PL-300 certification.</p>
     <div class="hero-ctas">
